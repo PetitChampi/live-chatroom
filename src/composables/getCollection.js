@@ -5,7 +5,7 @@ const getCollection = (collection) => {
   const documents = ref(null)
   const error = ref(null)
 
-  let collectionRef = projectFirestore.collection(collection).orderBy(createdAt)
+  let collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
 
   collectionRef.onSnapshot(snap => {
     let results = []
