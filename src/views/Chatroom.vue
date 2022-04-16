@@ -5,10 +5,23 @@
 </template>
 
 <script>
+import getUser from '@/composables/getUser'
 import Navbar from '../components/Navbar.vue'
+import { watch } from '@vue/runtime-core'
+import { useRouter } from 'vue-router'
 
 export default {
-  components: { Navbar }
+  components: { Navbar },
+  setup() {
+    const { user } = getUser()
+    const router = useRouter()
+
+    watch(user, () => {
+      if (!user.value) {
+        router.push({ name: "Welcome" })
+      }
+    })
+  }
 }
 </script>
 
